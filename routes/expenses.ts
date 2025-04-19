@@ -1,4 +1,5 @@
 import { Hono } from "hono";
+import { z } from "zod";
 
 type Expense = {
   id: number;
@@ -24,12 +25,20 @@ const fakeExpenses: Expense[] = [
   },
 ];
 
+// req validation use zod to request http
+const createPostSchema = z.object({
+  title: z.string(),
+  amount: z.number(),
+});
+
 export const expensesRoute = new Hono()
   .get("/", (c) => {
     return c.json({ expenses: [] });
   })
   .post("/", async (c) => {
-    const expense = await c.req.json();
+    const data = await c.req.json();
+    const expense = createPostSchema.parse(data);
+    console.log(expense.amount);
     console.log({ expense });
     return c.json(expense);
   });
