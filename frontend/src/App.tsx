@@ -1,28 +1,28 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
+import { useEffect, useState } from "react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [totalSpent, setTotalSpent] = useState(0);
+
+  useEffect(() => {
+    fetch("http://localhost:3000/api/expenses/total-expenses");
+  }, []);
 
   return (
     <>
-      <div className="flex flex-col bg-background">
-        <button
-          className="text-foreground"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          up
-        </button>
-        <button
-          className="bg-red-100 hover:bg-red-300"
-          onClick={() => setCount((count) => count - 1)}
-        >
-          down
-        </button>
-        <p>{count}</p>
-      </div>
+      <Card className="w-[350px] m-auto">
+        <CardHeader>
+          <CardTitle>Total Spent</CardTitle>
+          <CardDescription>The total amount you've spent</CardDescription>
+        </CardHeader>
+        <CardContent>{totalSpent}</CardContent>
+      </Card>
     </>
   );
 }
