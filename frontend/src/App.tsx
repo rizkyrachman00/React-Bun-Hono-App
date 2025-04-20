@@ -8,9 +8,9 @@ function App() {
 
   return (
     <>
-      <div className="flex flex-col">
+      <div className="flex flex-col bg-background">
         <button
-          className="bg-blue-100"
+          className="text-foreground"
           onClick={() => setCount((count) => count + 1)}
         >
           up
