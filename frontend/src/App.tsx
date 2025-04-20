@@ -11,7 +11,7 @@ function App() {
   const [totalSpent, setTotalSpent] = useState(0);
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/expenses/total-expenses");
+    fetch("/api/expenses/total-spent");
   }, []);
 
   return (
