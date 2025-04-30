@@ -26,7 +26,7 @@ const getAllExpenses = async () => {
   const data = await res.json();
 
   return data;
-}
+} 
 
 function Expenses() {
   const { isPending, error, data } = useQuery({
