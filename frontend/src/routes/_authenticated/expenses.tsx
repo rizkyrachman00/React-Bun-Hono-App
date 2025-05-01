@@ -13,7 +13,7 @@ import {
 import { Skeleton } from "@/components/ui/skeleton"
 
 
-export const Route = createFileRoute('/expenses')({
+export const Route = createFileRoute('/_authenticated/expenses')({
   component: Expenses,
 })
 
@@ -36,7 +36,7 @@ function Expenses() {
 
   if (error) return 'An error has occurred: ' + error.message
 
-  return <div className='p-2 max-w-3xl m-auto'>
+  return <div className='p-2 m-auto'>
     <Table>
       <TableCaption>A list of your expenses.</TableCaption>
       <TableHeader>

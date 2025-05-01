@@ -9,7 +9,7 @@ import {
 import { api } from "@/lib/api";
 import { useQuery } from '@tanstack/react-query'
 
-export const Route = createFileRoute('/')({
+export const Route = createFileRoute('/_authenticated/')({
   component: Index,
 })
 
@@ -30,7 +30,7 @@ function Index() {
 
   return (
     <>
-      <Card className="w-[350px] m-auto">
+      <Card className="w-[450px] m-auto">
         <CardHeader>
           <CardTitle>Total Spent</CardTitle>
           <CardDescription>The total amount you've spent</CardDescription>

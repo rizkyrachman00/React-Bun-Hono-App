@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button'
 import { useForm } from '@tanstack/react-form'
 import { api } from "@/lib/api"
 
-export const Route = createFileRoute('/create-expense')({
+export const Route = createFileRoute('/_authenticated/create-expense')({
   component: CreateExpense,
 })
 
@@ -31,7 +31,7 @@ function CreateExpense() {
   })
 
   return (
-    <div className='p-2 max-w-xl m-auto'>
+    <div className='p-2 m-auto'>
       <h2 className='mb-4'>Create Expense</h2>
       <form
         onSubmit={(e) => {
