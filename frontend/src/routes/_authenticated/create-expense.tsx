@@ -15,7 +15,7 @@ function CreateExpense() {
   const form = useForm({
     defaultValues: {
       title: '',
-      amount: 0,
+      amount: "0",
     },
     onSubmit: async ({ value }) => {
       await new Promise((r) => setTimeout(r, 2000))
@@ -74,7 +74,7 @@ function CreateExpense() {
                   value={field.state.value}
                   onBlur={field.handleBlur}
                   type='number'
-                  onChange={(e) => field.handleChange(Number(e.target.value))}
+                  onChange={(e) => field.handleChange(e.target.value)}
                 />
                 {field.state.meta.isTouched && !field.state.meta.isValid ? (
                   <em>{field.state.meta.errors.join(', ')}</em>
