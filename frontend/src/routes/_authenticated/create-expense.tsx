@@ -2,8 +2,10 @@ import { createFileRoute, useNavigate } from '@tanstack/react-router'
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Button } from '@/components/ui/button'
+
 import { useForm } from '@tanstack/react-form'
 import { api } from "@/lib/api"
+import { createExpenseSchema } from '@server/sharedTypes'
 
 export const Route = createFileRoute('/_authenticated/create-expense')({
   component: CreateExpense,
@@ -42,6 +44,9 @@ function CreateExpense() {
       >
         <form.Field
           name="title"
+          validators={{
+            onChange: createExpenseSchema.shape.title,
+          }}
           children={(field) => {
             return (
               <>
@@ -54,7 +59,7 @@ function CreateExpense() {
                   onChange={(e) => field.handleChange(e.target.value)}
                 />
                 {field.state.meta.isTouched && !field.state.meta.isValid ? (
-                  <em>{field.state.meta.errors.join(', ')}</em>
+                  <em>{field.state.meta.errors.map((err) => err?.message).join(',')}</em>
                 ) : null}
                 {field.state.meta.isValidating ? 'Validating...' : null}
               </>
@@ -64,6 +69,9 @@ function CreateExpense() {
 
         <form.Field
           name="amount"
+          validators={{
+            onChange: createExpenseSchema.shape.amount,
+          }}
           children={(field) => {
             return (
               <>
@@ -77,7 +85,7 @@ function CreateExpense() {
                   onChange={(e) => field.handleChange(e.target.value)}
                 />
                 {field.state.meta.isTouched && !field.state.meta.isValid ? (
-                  <em>{field.state.meta.errors.join(', ')}</em>
+                  <em>{field.state.meta.errors.map((err) => err?.message).join(',')}</em>
                 ) : null}
                 {field.state.meta.isValidating ? 'Validating...' : null}
               </>
